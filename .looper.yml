@@ -1,0 +1,24 @@
+tools:
+  jdk:
+    - 8
+  maven:
+    - 3.5.0
+
+triggers:
+  push: disabled
+  pr: enabled
+  #cron:
+    #spec: H 1 * * 2
+    #timezone: Europe/London
+
+envs:
+  global:
+    variables:
+       store_db_username: "%{credentials.username('c164ea21-ebd0-4325-a59b-87c9d53238ae')}"
+       store_db_password: "%{credentials.password('c164ea21-ebd0-4325-a59b-87c9d53238ae')}"
+       cdm_db_username: "%{credentials.username('719b2b93-b92e-41ac-b8ed-9a2671071a03')}"
+       cdm_db_password: "%{credentials.password('719b2b93-b92e-41ac-b8ed-9a2671071a03')}"
+
+flows:
+  default:
+    - mvn clean verify -s settings.xml -DargLine="-Denv=$environment -Dbuild_url=$BUILD_URL -Dstore_db_username=$store_db_username -Dstore_db_password=$store_db_password -Dcdm_db_username=$cdm_db_username -Dcdm_db_password=$cdm_db_password -Dtags=$tags -Drp_mode=$rp_mode"

@@ -1,0 +1,52 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <mirrors>
+        <mirror> <!--Send all requests to the public group -->
+            <id>warm</id>
+            <mirrorOf>central</mirrorOf>
+            <url>https://repository.walmart.com/content/groups/public/</url>
+        </mirror>
+    </mirrors>
+    <activeProfiles>
+        <!--make the profile active all the time -->
+        <activeProfile>warm</activeProfile>
+    </activeProfiles>
+    <profiles>
+        <profile>
+            <id>warm</id>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>http://central</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <id>bintray-epam-reportportal</id>
+                    <name>bintray</name>
+                    <url>http://dl.bintray.com/epam/reportportal</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>http://central</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+</settings>
